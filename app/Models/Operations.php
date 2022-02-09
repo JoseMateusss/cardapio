@@ -8,4 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class Operations extends Model
 {
     use HasFactory;
+
+    protected $fillable = ['user_id', 'day', 'open', 'close'];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

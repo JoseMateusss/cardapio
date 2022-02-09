@@ -19,6 +19,10 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name',
+        'logo',
+        'type',
+        'delivery',
+        'delivery_fee',
         'email',
         'password',
     ];
@@ -41,4 +45,19 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function operations()
+    {
+        return $this->hasMany(Operations::class);
+    }
+
+    public function contacts()
+    {
+        return $this->hasMany(Contact::class);
+    }
+
+    public function address()
+    {
+        return $this->morphOne(Address::class, 'owner');
+    }
 }
