@@ -10,9 +10,15 @@ const mix = require('laravel-mix');
  | file for the application as well as bundling up all the JS files.
  |
  */
+mix.css('resources/css/plugins/fontawesome-free/css/all.css', 'public/css/fontawesome');
+mix.css('resources/css/plugins/icheck-bootstrap/icheck-bootstrap.css', 'public/css');
+mix.css('resources/css/app.css', 'public/css');
 
-mix.js('resources/js/app.js', 'public/js').postCss('resources/css/app.css', 'public/css', [
-    require('postcss-import'),
-    require('tailwindcss'),
-    require('autoprefixer'),
-]);
+mix.js([
+    'resources/js/plugins/bootstrap/js/bootstrap.bundle.js',
+    'resources/js/app.js'
+], 'public/js/app.js');
+
+if(mix.inProduction()){
+    mix.version();
+}
